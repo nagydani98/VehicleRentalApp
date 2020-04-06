@@ -21,3 +21,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+assignment/.mvn/wrapper/MavenWrapperDownloader.java
+assignment/.mvn/wrapper/maven-wrapper.properties
+assignment/.mvn/wrapper/maven-wrapper.jar
+assignment/.mvn/wrapper/maven-wrapper.jar
