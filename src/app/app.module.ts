@@ -9,13 +9,31 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import {HttpClientModule} from '@angular/common/http';
 import {ApiService} from './service/api.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ClienteleCreateComponent } from './components/clientele-create/clientele-create.component';
+import { ClienteleListComponent } from './components/clientele-list/clientele-list.component';
+import { ClienteleUpdateComponent } from './components/clientele-update/clientele-update.component';
+import { VehicleCreateComponent } from './components/vehicle-create/vehicle-create.component';
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
+import { VehicleUpdateComponent } from './components/vehicle-update/vehicle-update.component';
+import { RentalCreateComponent } from './components/rental-create/rental-create.component';
+import { RentalListComponent } from './components/rental-list/rental-list.component';
+import { RentalUpdateComponent } from './components/rental-update/rental-update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeCreateComponent,
     EmployeeEditComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    ClienteleCreateComponent,
+    ClienteleListComponent,
+    ClienteleUpdateComponent,
+    VehicleCreateComponent,
+    VehicleListComponent,
+    VehicleUpdateComponent,
+    RentalCreateComponent,
+    RentalListComponent,
+    RentalUpdateComponent
   ],
   imports: [
     BrowserModule,
