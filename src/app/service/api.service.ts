@@ -61,7 +61,7 @@ export class ApiService {
     return this.http.get(`${this.baseUri}/allRental`);
   }
 
-  // Get employee
+  // Get vehicle
   getEmployee(id): Observable<any> {
     const url = `${this.baseUri}/read/${id}`;
     return this.http.get(url, {headers: this.headers}).pipe(
@@ -102,7 +102,7 @@ export class ApiService {
     );
   }
 
-  // Update employee
+  // Update vehicle
   updateEmployee(id, data): Observable<any> {
     const url = `${this.baseUri}/update/${id}`;
     return this.http.put(url, data, { headers: this.headers }).pipe(
@@ -131,7 +131,7 @@ export class ApiService {
     );
   }
 
-  // Delete employee
+  // Delete vehicle
   deleteEmployee(id): Observable<any> {
     const url = `${this.baseUri}/delete/${id}`;
     return this.http.delete(url, { headers: this.headers }).pipe(

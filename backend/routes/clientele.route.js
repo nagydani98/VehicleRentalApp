@@ -39,7 +39,7 @@ clienteleRoute.route('/readClientele/:id').get((req, res) => {
 })
 
 
-// Update employee
+// Update vehicle
 clienteleRoute.route('/updateClientele/:id').put((req, res, next) => {
   Clientele.findByIdAndUpdate(req.params.id, {
     $set: req.body
@@ -54,7 +54,7 @@ clienteleRoute.route('/updateClientele/:id').put((req, res, next) => {
   })
 })
 
-// Delete employee
+// Delete vehicle
 clienteleRoute.route('/deleteClientele/:id').delete((req, res, next) => {
   Clientele.findOneAndRemove(req.params.id, (error, data) => {
     if (error) {

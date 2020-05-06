@@ -45,10 +45,10 @@ export class ClienteleCreateComponent implements OnInit {
       return false;
 
     } else {
-      console.log('Form data valid, attempting to create employee');
+      console.log('Form data valid, attempting to create vehicle');
       this.apiService.createClientele(this.clienteleForm.value).subscribe(
         (res) => {
-          console.log('Employee successfully created!');
+          console.log('Vehicles successfully created!');
           this.ngZone.run(() => this.router.navigateByUrl('/clientele-list'));
         }, (error) => {
           console.log(error);
