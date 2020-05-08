@@ -1,1 +1,44 @@
-<p>rental-update works!</p>
+<div class="container">
+  <!-- No data message -->
+  <p class="no-data text-center">There is no rental added yet!</p>
+  <!-- Employee list -->
+  <table>
+
+    <tbody>
+    <tr class="table table-bordered">
+      <table>
+        <thead class="table-success">
+        <tr>
+          <th scope="col">Rentals</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Clientele Id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">{{rentalData._id}}</th>
+          <td>{{rentalData.start | date: "yyyy-MM-dd"}}</td>
+          <td>{{rentalData.end | date: "yyyy-MM-dd"}}</td>
+          <td>{{rentalData.Clientele}}</td>
+        </tr>
+        <tr>
+          <th colspan="5">Rented Vehicles</th>
+        </tr>
+        <tr *ngFor="let id of rentalData.RentedVehicle">
+          <td colspan="5">{{id}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <form [formGroup]="closureForm" (ngSubmit)="onSubmit()">
+      <label>Tick if vehicle was damaged</label>
+      <input type="checkbox" formControlName="damage">
+      <input type="number" formControlName="miles">
+      <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!closureForm.valid" >Create Bill and Close Rental</button>
+    </form>
+  </div>
+</div>

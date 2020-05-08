@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'create-clientele', component: ClienteleCreateComponent },
   { path: 'create-vehicle', component: VehicleCreateComponent },
   { path: 'create-rental', component: RentalCreateComponent },
+  { path: 'create-rental/:clienteleId', component: RentalCreateComponent },
   { path: 'edit-employee/:id', component: EmployeeEditComponent },
   { path: 'edit-clientele/:id', component: ClienteleUpdateComponent },
   { path: 'edit-vehicle/:id', component: VehicleUpdateComponent },

@@ -9,7 +9,10 @@ let Rental = new Schema({
   end: {
     type: Date
   },
-  RentedVehicle: []
+  RentedVehicle: [],
+  Clientele: {
+    type: String
+  }
 }, {
   collection: 'rentals'
 })
