@@ -1,3 +1,8 @@
+A very basic MEAN App for a vehicle rental service. Can create, edit, delete employees, vehicles, clients and rentals. Base app was
+made using https://www.positronx.io/mean-stack-tutorial-angular-7-crud-bootstrap/.
+
+Master branch was rebased onto meanDev, so the commit history looks weird.
+
 
 # Clientele
 
