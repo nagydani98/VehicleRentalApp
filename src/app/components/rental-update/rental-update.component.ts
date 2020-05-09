@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,8 +14,8 @@ import {Vehicle} from '../../model/vehicle';
 export class RentalUpdateComponent implements OnInit {
   submitted = false;
   closureForm: FormGroup;
-  rentalData: Rental;
-  rentedVehicles: Vehicle[];
+  rentalData: any = [];
+  rentedVehicles: any = [];
   VehicleStatus: any = ['AVAILABLE', 'RENTED', 'RETIRED'];
   bill: number;
 
@@ -23,18 +23,20 @@ export class RentalUpdateComponent implements OnInit {
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone
   ) {}
 
   ngOnInit() {
     const id = this.actRoute.snapshot.paramMap.get('id');
-    this.getRental(id);
-    this.getRentedVehicles();
+    this.getRental(id).then( () =>
+      this.getRentedVehicles()
+    );
     this.closureForm = this.fb.group({
-      damage: ['', [Validators.required]],
+      damage: [''],
       miles: ['', [Validators.required, Validators.pattern('^[^0][0-9]*$')]],
       duration: [''],
-      bill: ['', [Validators.required]]
+      bill: ['']
     });
   }
 
@@ -43,8 +45,8 @@ export class RentalUpdateComponent implements OnInit {
     return this.closureForm.controls;
   }
 
-  getRental(id) {
-    this.apiService.getRental(id).subscribe(data => {
+  async getRental(id) {
+   await this.apiService.getRental(id).toPromise().then(data => {
       this.rentalData = data;
     });
   }
@@ -52,11 +54,16 @@ export class RentalUpdateComponent implements OnInit {
 
   calculateBill() {
     this.bill = 0;
-    const rentalDuration = this.rentalData.start.getDay() - this.rentalData.end.getDay();
+    const start = Date.parse(this.rentalData.start);
+    const end = Date.parse(this.rentalData.end);
+    let rentalDuration = end - start;
+
+    rentalDuration = rentalDuration / (1000 * 60 * 60 * 24);
     console.log('Rental duration: ' + rentalDuration);
     for (const vehicle of this.rentedVehicles) {
         this.bill += rentalDuration * vehicle.rentalFee;
     }
+    this.bill += this.closureForm.value.miles * 70;
     if (this.closureForm.value.damage) {
       this.bill += 100000;
       console.log('Vehicle damaged! Extra fee added as penalty!');
@@ -77,15 +84,13 @@ export class RentalUpdateComponent implements OnInit {
       return false;
     } else {
         this.calculateBill();
-        for (const vehicle of this.rentedVehicles) {
-          vehicle.status = this.VehicleStatus[0];
-          vehicle.miles = this.closureForm.value.miles;
-          // @ts-ignore
-          this.apiService.updateVehicle(vehicle._id, vehicle);
-        }
         const id = this.actRoute.snapshot.paramMap.get('id');
-
-        this.apiService.deleteRental(id);
+        for ( const vehicle of this.rentedVehicles) {
+          vehicle.status = 'AVAILABLE';
+          this.apiService.updateVehicle(vehicle._id, vehicle).subscribe(() => {
+            console.log('Vehicle status updated', vehicle._id);
+          });
+        }
     }
   }
 

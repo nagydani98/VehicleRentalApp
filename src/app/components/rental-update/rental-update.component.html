@@ -1,7 +1,4 @@
 <div class="container">
-  <!-- No data message -->
-  <p class="no-data text-center">There is no rental added yet!</p>
-  <!-- Employee list -->
   <table>
 
     <tbody>
@@ -9,7 +6,7 @@
       <table>
         <thead class="table-success">
         <tr>
-          <th scope="col">Rentals</th>
+          <th scope="col">Rental Id</th>
           <th scope="col">Start</th>
           <th scope="col">End</th>
           <th scope="col">Clientele Id</th>
@@ -17,7 +14,7 @@
         </thead>
         <tbody>
         <tr>
-          <th scope="row">{{rentalData._id}}</th>
+          <th>{{rentalData._id}}</th>
           <td>{{rentalData.start | date: "yyyy-MM-dd"}}</td>
           <td>{{rentalData.end | date: "yyyy-MM-dd"}}</td>
           <td>{{rentalData.Clientele}}</td>
@@ -33,16 +30,23 @@
     </tr>
     </tbody>
   </table>
-  <div>
+  <div class="card-body" [hidden]="submitted">
     <form [formGroup]="closureForm" (ngSubmit)="onSubmit()">
-      <label>Tick if vehicle was damaged</label>
-      <input type="checkbox" formControlName="damage">
-      <input type="number" formControlName="miles">
-      <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!closureForm.valid" >Create Bill and Close Rental</button>
+      <div class="form-group">
+        <label>Tick if vehicle was damaged</label>
+        <input class="form-control" type="checkbox" formControlName="damage">
+      </div>
+      <div class="form-group">
+        <label>Enter total miles ran</label>
+        <input class="form-control" type="number" formControlName="miles">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!closureForm.valid || submitted === true" >Create Bill and Close Rental</button>
+      </div>
     </form>
   </div>
 
-  <div>
-
+  <div [hidden]="!submitted">
+      Total amount owed: {{bill}}
   </div>
 </div>
