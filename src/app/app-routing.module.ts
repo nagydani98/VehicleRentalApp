@@ -15,6 +15,7 @@ import {VehicleListComponent} from './components/vehicle-list/vehicle-list.compo
 import {RentalListComponent} from './components/rental-list/rental-list.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'clientele-list' },
   { path: 'create-employee', component: EmployeeCreateComponent },
   { path: 'create-clientele', component: ClienteleCreateComponent },
   { path: 'create-vehicle', component: VehicleCreateComponent },

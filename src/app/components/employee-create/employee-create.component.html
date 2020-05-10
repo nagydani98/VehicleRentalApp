@@ -51,19 +51,10 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-success btn-lg btn-block" type="submit" >Register</button>
+          <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="!employeeForm.valid">Register</button>
         </div>
       </form>
 
-    </div>
-    <!--Debug-->
-    <div>
-      <pre>{{myForm.name.valid}}</pre>
-      <pre>{{myForm.email.valid}}</pre>
-      <pre>{{myForm.phoneNumber.valid}}</pre>
-      <pre>{{myForm.designation.valid}}</pre>
-      <pre>{{myForm.phoneNumber.errors?.required}}</pre>
-      <pre>{{myForm.phoneNumber.errors?.pattern}}</pre>
     </div>
   </div><!-- form card register -->
 </div>
