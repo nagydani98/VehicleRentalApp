@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../service/api.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -9,12 +10,19 @@ import {ApiService} from '../../service/api.service';
 export class VehicleListComponent implements OnInit {
 
   Vehicles: any = [];
+  hiddenVehicles: any = [];
+  filterForm: FormGroup;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, public fb: FormBuilder) {
     this.readVehicle();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.filterForm = this.fb.group({
+      type: [''],
+      plate: ['']
+    });
+  }
 
   readVehicle() {
     this.apiService.getAllVehicles().subscribe((data) => {
@@ -29,6 +37,28 @@ export class VehicleListComponent implements OnInit {
         }
       );
     }
+  }
+
+  filterVehicles(type, plate) {
+    for (const vehicle of this.hiddenVehicles) {
+      this.Vehicles.push(vehicle);
+    }
+    this.hiddenVehicles = [];
+    for (let i = 0; i <= this.Vehicles.length; i++) {
+      const vehicle = this.Vehicles[i];
+      if ((vehicle.type !== type && type.length > 0) || (vehicle.plate !== plate && plate.length > 0)) {
+        this.Vehicles.splice(i, 1);
+        this.hiddenVehicles.push(vehicle);
+        i--;
+      }
+    }
+  }
+
+  onFilterSubmit() {
+    this.filterVehicles(
+      this.filterForm.value.type,
+      this.filterForm.value.plate
+    );
   }
 
 }
