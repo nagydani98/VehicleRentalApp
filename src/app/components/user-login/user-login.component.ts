@@ -42,8 +42,6 @@ export class UserLoginComponent implements OnInit {
 
   getUser(username) {
     for (const user of this.Users) {
-      console.log(user.username);
-      console.log(user);
       if (user.username === username) {
 
         return user;
