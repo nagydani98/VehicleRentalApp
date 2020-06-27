@@ -18,6 +18,8 @@ import { VehicleUpdateComponent } from './components/vehicle-update/vehicle-upda
 import { RentalCreateComponent } from './components/rental-create/rental-create.component';
 import { RentalListComponent } from './components/rental-list/rental-list.component';
 import { RentalUpdateComponent } from './components/rental-update/rental-update.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { RentalUpdateComponent } from './components/rental-update/rental-update.
     VehicleUpdateComponent,
     RentalCreateComponent,
     RentalListComponent,
-    RentalUpdateComponent
+    RentalUpdateComponent,
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,

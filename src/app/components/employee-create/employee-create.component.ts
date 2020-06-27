@@ -54,10 +54,10 @@ export class EmployeeCreateComponent implements OnInit {
       return false;
 
     } else {
-      console.log('Form data valid, attempting to create vehicle');
+      console.log('Form data valid, attempting to create employee');
       this.apiService.createEmployee(this.employeeForm.value).subscribe(
         (res) => {
-          console.log('Vehicles successfully created!');
+          console.log('Employee successfully created!');
           this.ngZone.run(() => this.router.navigateByUrl('/employees-list'));
         }, (error) => {
           console.log(error);

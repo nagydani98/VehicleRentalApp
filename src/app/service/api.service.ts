@@ -47,6 +47,14 @@ export class ApiService {
       );
   }
 
+  createUser(data): Observable<any> {
+    const url = `${this.baseUri}/createUser`;
+    return this.http.post(url, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      );
+  }
+
   // Get all employees
   getEmployees() {
     return this.http.get(`${this.baseUri}`);
@@ -59,6 +67,9 @@ export class ApiService {
   }
   getAllRentals() {
     return this.http.get(`${this.baseUri}/allRental`);
+  }
+  getAllUsers() {
+    return this.http.get(`${this.baseUri}/allUsers`);
   }
 
   // Get vehicle
@@ -102,6 +113,16 @@ export class ApiService {
     );
   }
 
+  getUser(id): Observable<any> {
+    const url = `${this.baseUri}/readUser/${id}`;
+    return this.http.get(url, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
+
   // Update vehicle
   updateEmployee(id, data): Observable<any> {
     const url = `${this.baseUri}/update/${id}`;
@@ -131,6 +152,13 @@ export class ApiService {
     );
   }
 
+  updateUser(id, data): Observable<any> {
+    const url = `${this.baseUri}/updateUser/${id}`;
+    return this.http.put(url, data, { headers: this.headers }).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
   // Delete vehicle
   deleteEmployee(id): Observable<any> {
     const url = `${this.baseUri}/delete/${id}`;
@@ -155,6 +183,13 @@ export class ApiService {
 
   deleteRental(id): Observable<any> {
     const url = `${this.baseUri}/deleteRental/${id}`;
+    return this.http.delete(url, { headers: this.headers }).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
+  deleteUser(id): Observable<any> {
+    const url = `${this.baseUri}/deleteUser/${id}`;
     return this.http.delete(url, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     );
