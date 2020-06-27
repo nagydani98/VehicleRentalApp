@@ -22,6 +22,7 @@ const employeeRoute = require('../backend/routes/employee.route')
 const clienteleRoute = require('../backend/routes/clientele.route')
 const vehicleRoute = require('../backend/routes/vehicle.route')
 const rentalRoute = require('../backend/routes/rental.route')
+const userRoute = require('../backend/routes/user.route')
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -34,6 +35,7 @@ app.use('/api', employeeRoute)
 app.use('/api', clienteleRoute)
 app.use('/api', vehicleRoute)
 app.use('/api', rentalRoute)
+app.use('/api', userRoute)
 
 // Create port
 const port = process.env.PORT || 4000;

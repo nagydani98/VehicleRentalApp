@@ -13,9 +13,11 @@ import {VehicleUpdateComponent} from './components/vehicle-update/vehicle-update
 import {RentalUpdateComponent} from './components/rental-update/rental-update.component';
 import {VehicleListComponent} from './components/vehicle-list/vehicle-list.component';
 import {RentalListComponent} from './components/rental-list/rental-list.component';
+import {UserRegisterComponent} from './components/user-register/user-register.component';
+import {UserLoginComponent} from './components/user-login/user-login.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'clientele-list' },
+  { path: '', pathMatch: 'full', redirectTo: 'user-login' },
   { path: 'create-employee', component: EmployeeCreateComponent },
   { path: 'create-clientele', component: ClienteleCreateComponent },
   { path: 'create-vehicle', component: VehicleCreateComponent },
@@ -28,7 +30,9 @@ const routes: Routes = [
   { path: 'employees-list', component: EmployeeListComponent },
   { path: 'clientele-list', component: ClienteleListComponent },
   { path: 'vehicle-list', component: VehicleListComponent },
-  { path: 'rental-list', component: RentalListComponent }
+  { path: 'rental-list', component: RentalListComponent },
+  { path: 'user-register', component: UserRegisterComponent },
+  { path: 'user-login', component: UserLoginComponent }
 ];
 
 @NgModule({
